@@ -1,0 +1,210 @@
+@import "variables"
+@import "mixins"
+
+*, *:before, *:after 
+  box-sizing: border-box
+  margin: 0
+
+
+html, body
+  min-height: 100%
+  min-width: 320px
+
+body
+  font-family: $site-font-family
+  background: $body-bg-color
+  color: $black
+
+.clear 
+  clear: both
+.clearfix:after 
+  content: "."
+  display: block
+  height: 0
+  clear: both
+  visibility: hidden
+  
+.container
+  min-width: 320px
+  padding: 0 15px
+  max-width: 100%
+  margin: 0 auto
+  +mobile
+    max-width: $container-xs
+  +tablet
+    max-width: $container-sm
+  +laptop
+    max-width: $container-md
+  +desktop
+    max-width: $container-lg
+  // +desktop-large  
+  //   max-width: $container-xl
+
+// Buttons
+
+.btn
+  display: inline-block
+  border-radius: 2px
+  background: $red
+  transition: all 0.3s ease
+  padding: 11px 20px
+  text-align: center
+  color: #ffffff
+  font-size: 12px
+  line-height: 14px
+  font-weight: 500
+  border: none
+  cursor: pointer
+  box-shadow: 0px 7px 20px rgba(237, 202, 201, 0.9)
+  &:hover, &:focus
+    background: $red-light
+
+  +tablet
+    font-size: 15px
+    line-height: 18px
+    padding: 13px 20px
+
+.btn-large
+  padding: 20px 15px
+  font-size: 14px
+
+// Forms
+
+input
+  &:hover, &:focus, &:active
+    outline: none
+
+.form-small
+  display: flex
+
+  .calendar
+    position: absolute
+    top: 50%
+    left: 218px
+    margin-top: -11px
+    display: none
+    +tablet
+      display: block
+
+  .form-submit
+    border-radius: 0px 5px 5px 0px
+    padding: 0px 15px
+    font-size: 10px
+    box-shadow: none
+    +tablet
+      font-size: 12px
+      padding: 5px 35px
+    +laptop
+      font-size: 15px
+
+  .form-group
+    position: relative
+
+  .form-input
+    height: 26px
+    background: #FFFFFF
+    border-radius: 5px 0px 0px 5px
+    border: none
+    font-size: 10px
+    padding: 0 10px
+    +tablet
+      height: 52px
+      font-size: 15px
+      padding: 0 55px 0 18px
+
+    &:focus
+      outline: none
+
+.form-dark
+  margin-bottom: 10px
+  .form-input
+    background: $black
+    color: #808B93
+    +placeholder-color(#808B93)
+    padding: 0 25px 0 18px
+
+  .form-submit
+    padding: 5px 15px
+
+.form-caption
+  display: block
+  color: #808B93
+  font-size: 11px
+
+// Modals
+
+.auth
+  &-modal
+  &-header
+    display: flex
+    justify-content: space-between
+    text-align: center
+    
+  &-nav
+    flex: 1 1
+    text-transform: uppercase
+    font-size: 13px
+    line-height: 18px
+    padding: 26px 15px
+    background: $black
+    color: #ffffff
+    cursor: pointer
+    transition: all 0.4s ease
+    &.active
+      background: #ffffff
+      color: $black
+
+  &-body
+    padding: 60px 65px 34px
+
+  &-footer
+    display: flex
+    justify-content: space-between
+    
+
+  .input-error
+    display: block
+    color: #c94747
+    font-size: 13px
+    line-height: 18px
+    font-weight: 300
+    margin: 9px 0 0
+    
+
+  .auth-input
+    width: 100%
+    color: #707070
+    font-size: 17px
+    font-weight: 300
+    padding: 18px 24px 17px
+    border: 1px solid #cdcdcd
+    +placeholder-color(#707070)
+    &:hover, &:focus, &:active
+      border-color: #a7a7a7
+
+// Socials
+
+.social 
+  font-size: 0
+  margin: 0
+  padding: 0
+  text-align: center
+  &-small
+    .social-item
+      margin: 0 5px
+    .social-link
+      width: 25px
+      height: 25px
+
+  &-item
+    margin: 0 9px
+    display: inline-block
+
+  &-link
+    display: block
+    width: 36px
+    height: 36px
+    background-position: 0 0
+    background-repeat: no-repeat
+    color: rgba(0,0,0,0)
+

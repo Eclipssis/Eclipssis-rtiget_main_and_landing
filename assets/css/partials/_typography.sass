@@ -1,0 +1,53 @@
+@import "variables"
+@import "mixins"
+
+ul, ol
+  list-style-type: none
+  padding: 0
+
+img 
+  max-width: 100%
+
+.font-400
+  font-weight: 400
+
+.font-500
+  font-weight: 500
+
+.font-600
+  font-weight: 600
+
+.font-700 
+  font-weight: 700
+
+h1, .title-h1, 
+h2, .title-h2
+  text-align: center
+
+.title-h1
+  font-size: 20px
+  line-height: 1.2
+  color: #000000
+  margin-bottom: 12px
+  +tablet
+    font-size: 28px
+  +laptop
+    font-size: 45px
+
+
+.title-h2
+  font-size: 18px
+  line-height: 1.1
+  font-weight: bold
+  color: #000000
+  margin-bottom: 25px
+  +tablet
+    font-size: 26px
+  +laptop
+    margin-bottom: 50px
+    font-size: 36px
+
+.highlight 
+  padding: 2px 5px
+  &--red
+    background: rgba($red-light, 0.2)

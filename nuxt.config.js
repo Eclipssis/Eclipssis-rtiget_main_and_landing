@@ -20,7 +20,9 @@ module.exports = {
   loading: { color: '#3B8070' },
 
   plugins: [
-    { src: '~/plugins/modal', ssr: false }
+    { src: '~/plugins/modal', ssr: false },
+    { src: '~/plugins/vue-carousel', mode: 'client' },
+    '~plugins/range-slider.js'
   ],
 
   css: [

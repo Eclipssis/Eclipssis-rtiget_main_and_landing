@@ -3,7 +3,5 @@ export const state = () => ({
 })
 
 export const mutations = {
-  toggleSideNav (state) {
-    state.isOpenSideNav = !state.isOpenSideNav
-  }
+  
 }

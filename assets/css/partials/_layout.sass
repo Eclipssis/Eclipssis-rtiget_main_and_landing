@@ -67,6 +67,10 @@ body
     line-height: 18px
     padding: 13px 20px
 
+  &.disabled
+    opacity: 0.5
+    pointer-events: none
+
 .btn-large
   padding: 20px 15px
   font-size: 14px
@@ -165,13 +169,15 @@ input
     justify-content: space-between
     
 
-  .input-error
+  .error-message
     display: block
     color: #c94747
     font-size: 13px
     line-height: 18px
     font-weight: 300
     margin: 9px 0 0
+
+  
     
 
   .auth-input
@@ -184,6 +190,9 @@ input
     +placeholder-color(#707070)
     &:hover, &:focus, &:active
       border-color: #a7a7a7
+
+    &.input-error
+      border: 1px solid #c94747
 
 // Socials
 

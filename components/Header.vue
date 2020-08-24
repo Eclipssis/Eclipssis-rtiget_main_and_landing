@@ -2,7 +2,7 @@
   <div class="header">
     
     <client-only>
-      <modal name="auth-modal" class="auth" :height="'auto'">
+      <modal name="auth-modal" class="auth" :height="'auto'" scrollable>
         <div class="auth-modal">
           <div class="auth-header">
             <a class="auth-nav" :class="{active: activeAuth === 'login'}" @click="activeAuth = 'login'">ВХОД</a>
@@ -11,21 +11,42 @@
           <div class="auth-body">
             <template v-if="activeAuth === 'login'">
               <div class="mb-4">
-                <input type="text" class="auth-input" placeholder="Электронная почта">
-                <span class="input-error">Необходимо заполнить «Электронная почта».</span>
+                <input 
+                  v-model="login.email" 
+                  type="text" 
+                  class="auth-input"
+                  :class="{'input-error': $v.login.$dirty && $v.login.email.$invalid}" 
+                  placeholder="Электронная почта"
+                >
+                <span class="error-message" v-if="$v.login.$dirty && $v.login.email.$invalid">
+                  Необходимо заполнить «Электронная почта».
+                </span>
               </div>
 
               <div class="mb-4">
-                <input type="password" class="auth-input" placeholder="Пароль">
-                <span class="input-error">Необходимо заполнить «Пароль».</span>
+                <input 
+                  v-model="login.password" 
+                  type="password" 
+                  class="auth-input"
+                  :class="{'input-error': $v.login.$dirty && $v.login.password.$invalid}" 
+                  placeholder="Пароль"
+                >
+                <span class="error-message" v-if="$v.login.$dirty && $v.login.password.$invalid">
+                  Необходимо заполнить «Пароль».
+                </span>
               </div>
 
+              <div class="error-message" v-if="loginError">
+                {{ loginError }}
+              </div>
+              
+
               <div class="text-right mb-3">
-                <a class="link link-black link-undeline">Забыли пароль?</a>
+                <a class="link link-black link-undeline" @click="onOpenRecoveryModal">Забыли пароль?</a>
               </div>
 
               <div>
-                <a class="btn btn-large w-100 text-uppercase">Войти</a>
+                <a class="btn btn-large w-100 text-uppercase" @click="onLogin">Войти</a>
               </div>
 
               <div class="text-center my-2">Или войти с помощью:</div>
@@ -43,32 +64,86 @@
               <div class="auth-footer">
                 <div>Нет аккаунта?</div>
                 <div>
-                  <a class="link color-red">Зарегистрироваться</a>
+                  <a class="link color-red" @click="activeAuth = 'register'">Зарегистрироваться</a>
                 </div>
               </div>
             </template>
-
+            
             <template v-if="activeAuth === 'register'">
+              
               <div class="mb-4">
-                <input type="text" class="auth-input" placeholder="Электронная почта">
-                <span class="input-error">Необходимо заполнить «Электронная почта».</span>
+                <RadioButton v-model="registration.role" name="client" :radioName="'role'" class="d-inline-block mr-5">Клиент</RadioButton>
+                <RadioButton v-model="registration.role" name="partner" :radioName="'role'" class="d-inline-block">Партнер</RadioButton>
               </div>
 
               <div class="mb-4">
-                <input type="text" class="auth-input" placeholder="Телефон">
-                <span class="input-error">
+                <input 
+                  v-model="registration.email" 
+                  type="text" 
+                  class="auth-input" 
+                  :class="{'input-error': $v.registration.$dirty && $v.registration.email.$invalid}" 
+                  placeholder="Электронная почта"
+                >
+                <span v-if="$v.registration.$dirty && $v.registration.email.$invalid" class="error-message">
+                  Необходимо заполнить «Электронная почта».
+                </span>
+              </div>
+
+              <div class="mb-4">
+                <input 
+                  v-model="registration.phone" 
+                  type="text" 
+                  class="auth-input"
+                  :class="{'input-error': $v.registration.$dirty && $v.registration.phone.$invalid}" 
+                  placeholder="Телефон"
+                >
+                <span class="error-message" v-if="$v.registration.$dirty && $v.registration.phone.$invalid">
                   Укажите номер телефона, по которому сотрудники сервиса смогут при необходимости связаться с вами. 
                   Мы никому не передадим ваш номер и не будем присылать спам.
                 </span>
               </div>
 
-              <Checkbox :vertical-align="'top'" class="mb-4">
+              <div class="mb-4">
+                <input 
+                  v-model="registration.password" 
+                  type="password" 
+                  class="auth-input"
+                  :class="{'input-error': $v.registration.$dirty && $v.registration.password.$invalid}" 
+                  placeholder="Пароль"
+                >
+                <span class="error-message" v-if="$v.registration.$dirty && $v.registration.password.$invalid">
+                  Необходимо заполнить «Пароль».
+                </span>
+              </div>
+
+              <div class="mb-4">
+                <input 
+                  v-model="registration.passwordRepeat" 
+                  type="password" 
+                  class="auth-input"
+                  :class="{'input-error': $v.registration.$dirty && $v.registration.passwordRepeat.$invalid}"
+                  placeholder="Повторите пароль"
+                >
+                <span class="error-message" v-if="$v.registration.$dirty && $v.registration.passwordRepeat.$invalid">
+                  Необходимо что бы пароли совпадали.
+                </span>
+              </div>
+
+              <div class="input-error mb-4" v-if="registrationError">
+                {{ registrationError }}
+              </div>
+
+              <Checkbox v-model="politic" :vertical-align="'top'" class="mb-4">
                 Регистрируясь в Сервисе Вы даете свое согласие на обработку персональных данных согласно 
                 <a class="color-blue">Положению о конфиденциальности персональных данных</a>
               </Checkbox>
 
               <div>
-                <a class="btn btn-large w-100 text-uppercase">Зарегистрироваться</a>
+                <a 
+                  class="btn btn-large w-100 text-uppercase"
+                  :class="{disabled: !politic}"
+                  @click="onRegistration"
+                >Зарегистрироваться</a>
               </div>
 
               <div class="text-center my-2">Или зарегистрироваться с помощью:</div>
@@ -83,6 +158,43 @@
               </ul>
               
             </template>
+          </div>
+        </div>
+      </modal>
+    </client-only>
+
+    <client-only>
+      <modal name="register-success" class="auth" :height="'auto'" scrollable>
+        <div class="auth-modal">
+
+          <div class="auth-body">
+
+            <h2>Для завершения регистрации пройдите по ссылке отправленной на e-mail.</h2>            
+
+          </div>
+        </div>
+      </modal>
+    </client-only>
+
+    <client-only>
+      <modal name="recover-password" class="auth" :height="'auto'" scrollable>
+        <div class="auth-modal">
+
+          <div class="auth-body recovery-body">
+
+            <h2 class="text-left">Восcтановить пароль</h2>
+
+            <div class="divider"></div>
+
+            <div class="form-group d-flex">
+              <label class="recovery-label">E-mail: *</label>
+              <input type="text" class="auth-input" placeholder="Введите E-mail для восcтановления пароля">  
+            </div>
+
+            <div class="divider"></div>
+
+            <a class="btn">Отправить</a>
+
           </div>
         </div>
       </modal>
@@ -135,33 +247,85 @@
     </div>
 
     <div class="header-section justify-end">
+
       <div class="favorites">
         <span class="favorites-text">Избранное</span>
         <i class="icon heart-black"></i>
         <span class="favorites-count">12</span>
       </div>
 
-      <a href="#!" class="auth-btn" @click="$modal.show('auth-modal')">
+      <div v-if="!user" class="auth-btn" @click="$modal.show('auth-modal')">
         <span class="auth-btn-inner">
           <span class="auth-btn-title">Войти</span>
           <span class="auth-btn-subtitle">в личный кабинет</span>
         </span>
         <i class="icon log-in d-none d-xs-inline-block"></i>
-      </a>
+      </div>
+    
+      <div v-if="user" class="user-cabinet-wrap">
+        <a  href="#!" class="auth-btn">
+          Личный кабинет
+          <i class="icon user-cabinet ml-2"></i>
+        </a>
+
+        <ul class="login-menu">
+          <li class="login-menu__list">
+            <a class="login-menu__link " href="/users/requests/"> Заявки</a>
+          </li>
+          <li class="login-menu__list">
+            <a class="login-menu__link " href="/users/orders/"> Заказы</a>
+          </li>
+          <li class="login-menu__list">
+            <a class="login-menu__link " href="/users/services/"> Мои услуги</a>
+          </li>
+          <li class="login-menu__list">
+            <a class="login-menu__link " href="/users/settings/"> Настройки</a>
+          </li>
+          <li class="login-menu__list">
+            <a class="login-menu__link " href="/users/employees/"> Сотрудники</a>
+          </li>
+          <li class="login-menu__list">
+            <a class="login-menu__link " href="/users/company/"> Компания</a>
+          </li>
+          <li class="login-menu__list">
+            <a class="login-menu__link " href="/users/personal-account"> Транзакции</a>
+          </li>
+          <li class="login-menu__list">
+            <a class="login-menu__link " href="#!" @click="onLogOut"> Выход</a>
+          </li>
+        </ul>
+      </div>
     </div>
+    
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import { directive as onClickaway } from 'vue-clickaway';
-import Checkbox from '@/components/Checkbox.vue';
+import { mapMutations, mapState } from "vuex"
+const { required, sameAs } = require('vuelidate/lib/validators')
+import { validationMixin } from 'vuelidate'
+import { directive as onClickaway } from 'vue-clickaway'
+import Checkbox from '@/components/Checkbox.vue'
+import RadioButton from '@/components/RadioButton.vue'
+
+const registrationFields = {
+  email: '',
+  phone: '',
+  password: '',
+  passwordRepeat: '',
+  role: 'client'
+}
 
 export default {
-  components: {
-    Checkbox,
-  },
+
   name: 'Header',
+
+  components: {
+    RadioButton,
+    Checkbox
+  },
+
+  mixins: [validationMixin],
 
   directives: {
     onClickaway: onClickaway,
@@ -174,13 +338,53 @@ export default {
     },
   },
 
+  validations: {
+    registration: {
+      email: {
+        required
+      },
+      phone: {
+        required
+      },
+      password: {
+        required
+      },
+      passwordRepeat: {
+        sameAsPassword: sameAs('password')
+      }
+    },
+
+    login: {
+      email: {
+        required
+      },
+      password: {
+        required
+      }
+    }
+  },
+
   data() {
     return {
       activeAuth: 'register',
       searchBlock: false,
       searchBlockMob: false,
-      searchText: ''
+      searchText: '',
+      politic: false,
+      registration: JSON.parse(JSON.stringify(registrationFields)),
+      registrationError: null,
+      loginError: null,
+      login: {
+        email: '',
+        password: ''
+      }
     }
+  },
+
+  computed: {
+    ...mapState({
+      user: state => state.auth.user
+    })
   },
 
   mounted () {
@@ -198,6 +402,59 @@ export default {
       } else {
         this.searchBlockMob = !this.searchBlockMob
       }
+    },
+
+    onOpenRecoveryModal () {
+      this.$modal.show('recover-password')
+      this.$modal.hide('auth-modal')
+    },
+
+    async onRegistration () {
+
+      this.registrationError = null
+      this.$v.registration.$touch()
+
+      if (!this.$v.registration.$invalid) {
+        try {
+          await this.$store.dispatch('auth/registration', this.registration)
+          this.registration = JSON.parse(JSON.stringify(registrationFields))
+          this.$v.registration.$reset()
+          this.$modal.hide('auth-modal')
+          this.$modal.show('register-success')
+        } catch (error) {
+          console.log('error', error)
+          this.registrationError = error.message
+        }
+      }
+
+      
+    },
+
+    async onLogin () {
+      this.$v.login.$touch()
+      this.loginError = null
+
+      if (!this.$v.login.$invalid) {
+        try {
+          await this.$store.dispatch('auth/login', this.login)
+
+          this.login = {
+            email: '',
+            password: ''
+          }
+          this.$modal.hide('auth-modal')
+          this.$v.login.$reset()
+        } catch (error) {
+          console.log('error', error)
+          this.loginError = error.message
+        }
+      }
+
+      
+    },
+
+    onLogOut () {
+      this.$store.commit('auth/clearAuthInfo')
     }
   },
 }
@@ -208,6 +465,7 @@ export default {
 @import "~/assets/css/partials/_mixins.sass";
 
 .link
+  cursor: pointer
   font-size: 10px
   +tablet
     font-size: 12px
@@ -360,5 +618,51 @@ export default {
   &-inner
     margin-right: 8px
     text-align: right
+
+
+.user-cabinet-wrap
+  position: relative
+  &:hover .login-menu
+    visibility: visible
+    opacity: 1
+
+.login-menu
+  position: absolute
+  visibility: hidden
+  opacity: 0
+  transition: all 0.4s ease
+  background: #fff
+  box-shadow: 0 16px 32px rgba(75, 86, 92, 0.09)
+  border-radius: 4px
+  position: absolute
+  width: 183px
+  top: 30px
+  right: 0
+  padding: 0 10px
+  &__list
+    border-bottom: 1px solid rgba(101, 113, 134, 0.2)
+  &__link
+    display: block
+    width: 100%
+    padding: 13px 10px
+    font-size: 14px
+    line-height: 16px
+    color: #222f38
+    text-decoration: none
+    text-align: right
+    transition: all 0.2s ease
+    &:hover
+      color: #eb4745
+
+.recovery-label
+  min-width: 95px
+  margin-right: 15px
+  font-size: 20px
+  padding: 14px 0
+
+.recovery-body
+  .auth-input
+    font-size: 16px
+    padding: 0 10px
 
 </style>

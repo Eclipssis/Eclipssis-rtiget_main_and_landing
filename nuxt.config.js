@@ -1,4 +1,5 @@
 module.exports = {
+  target: 'static',
   /*
   ** Headers of the page
   */
@@ -19,8 +20,17 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
 
+  axios: {
+    baseURL: "http://testrtiger3.rlion.org/api"
+  },
+
+  modules: [
+    '@nuxtjs/axios',
+  ],
+
   plugins: [
     { src: '~/plugins/modal', ssr: false },
+    { src: '~/plugins/vuelidate', ssr: false },
     { src: '~/plugins/vue-carousel', mode: 'client' },
     '~plugins/range-slider.js'
   ],
@@ -45,25 +55,34 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+
+      if(!isDev) {
+        config.output.publicPath = '_nuxt/'
+      }
     }
   },
 
-  generate: {
-    routes() {
-      const articlesCount = 50000
-      const articlesList = []
-      
-      for (let index = 0; index < articlesCount; index++) {
-        const article = {
-          id: index,
-          title: 'Article',
-          text: 'Some article text like lorem ipsum dolar'
-        }
-        articlesList.push(article)
-      }
+  // router: {
+  //   base: '/<repository-name>/'
+  // },
 
-      return articlesList.map(article => `articles/${article.id}`);
-    }
+  generate: {
+    // dir: 'rt'
+    // routes() {
+    //   const articlesCount = 50000
+    //   const articlesList = []
+      
+    //   for (let index = 0; index < articlesCount; index++) {
+    //     const article = {
+    //       id: index,
+    //       title: 'Article',
+    //       text: 'Some article text like lorem ipsum dolar'
+    //     }
+    //     articlesList.push(article)
+    //   }
+
+    //   return articlesList.map(article => `articles/${article.id}`);
+    // }
   }
 }
 

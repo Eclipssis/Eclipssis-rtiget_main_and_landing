@@ -17,6 +17,10 @@ export default {
     SideMenu,
     Header,
     Footer
+  },
+
+  beforeMount () {
+    this.$store.commit('initState')
   }
 }
 </script>

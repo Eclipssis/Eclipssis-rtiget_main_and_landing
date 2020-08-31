@@ -188,12 +188,12 @@
 
             <div class="form-group d-flex">
               <label class="recovery-label">E-mail: *</label>
-              <input type="text" class="auth-input" placeholder="Введите E-mail для восcтановления пароля">  
+              <input v-model="recoveryEmail" type="text" class="auth-input" placeholder="Введите E-mail для восcтановления пароля">  
             </div>
 
             <div class="divider"></div>
 
-            <a class="btn">Отправить</a>
+            <a class="btn" @click="onRecoveryPassword">Отправить</a>
 
           </div>
         </div>
@@ -224,7 +224,7 @@
           <i class="menu-bar"></i>
         </div>
 
-        <div>
+        <!-- <div>
           <div class="search-button">
             <div class="input-wrap">
               <input 
@@ -236,13 +236,13 @@
             </div>
             <i class="icon search" @click="toggleSearch"></i>
           </div>
-        </div>
+        </div> -->
       </template>
     </div>
 
     <div class="header-section justify-center">
       <div class="logo">
-        <img src="@/static/images/logo.png">
+        <img src="~/assets/images/logo.png">
       </div>
     </div>
 
@@ -377,7 +377,8 @@ export default {
       login: {
         email: '',
         password: ''
-      }
+      },
+      recoveryEmail: ''
     }
   },
 
@@ -407,6 +408,14 @@ export default {
     onOpenRecoveryModal () {
       this.$modal.show('recover-password')
       this.$modal.hide('auth-modal')
+    },
+
+    async onRecoveryPassword () {
+      try {
+        await this.$store.dispatch('auth/recoveryPassword', this.recoveryEmail)
+      } catch (error) {
+        
+      }
     },
 
     async onRegistration () {

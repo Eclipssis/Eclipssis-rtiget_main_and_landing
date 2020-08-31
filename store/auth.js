@@ -57,6 +57,31 @@ export const actions = {
     }
   },
 
+  async recoveryPassword (context, payload) {
+    try {
+      const response = await this.$axios.$post('/auth/recovery', {
+        login: payload.email,
+        pass: payload.password,
+        rePass: payload.passwordReset,
+      })
+      console.log('response', response)
+    } catch (error) {
+      
+    }
+  },
+
+  async checkToken (context, token) {
+    try {
+      // const response = await this.$axios.$post('/auth/check-token', {
+      //   token: token
+      // })
+      let isValid = true
+      return isValid
+    } catch (error) {
+      
+    }
+  },
+
   async logOut (commit, payload) {
     commit('clearAuthInfo')
   }

@@ -1,5 +1,10 @@
 module.exports = {
-  target: 'static',
+
+  // target: 'static',
+
+  // router: {
+  //   base: '/Eclipssis-rtiget_main_and_landing'
+  // },
   /*
   ** Headers of the page
   */
@@ -21,7 +26,7 @@ module.exports = {
   loading: { color: '#3B8070' },
 
   axios: {
-    baseURL: "http://testrtiger3.rlion.org/api"
+    baseURL: "http://api-ivasiliev.rlion.org/api"
   },
 
   modules: [

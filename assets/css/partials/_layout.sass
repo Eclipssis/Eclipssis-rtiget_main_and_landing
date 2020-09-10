@@ -58,6 +58,7 @@ body
   font-weight: 500
   border: none
   cursor: pointer
+  text-decoration: none
   box-shadow: 0px 7px 20px rgba(237, 202, 201, 0.9)
   &:hover, &:focus
     background: $red-light
@@ -74,6 +75,93 @@ body
 .btn-large
   padding: 20px 15px
   font-size: 14px
+
+
+// Avatar
+
+.avatar
+  img
+    border-radius: 50%
+
+
+// Breadcrumb
+
+.breadcrubm
+  display: flex
+  &__item
+    display: inline-flex
+    align-items: center
+    &.active
+      .breadcrubm__link
+        text-decoration: none
+    
+  &__item + &__item
+    &:before
+      content: '/'
+      margin: 0 5px
+
+  &__link
+    font-size: 12px
+    color: #222F38
+
+// Switcher
+
+.onoffswitch
+  display: inline-block
+  position: relative
+  width: 65px
+
+.onoffswitch-checkbox
+  position: absolute
+  opacity: 0
+  pointer-events: none
+
+.onoffswitch-label
+  display: block
+  overflow: hidden
+  cursor: pointer
+  height: 32px
+  padding: 0
+  line-height: 32px
+  border: 2px solid #E3E3E3
+  border-radius: 32px
+  background-color: #FFFFFF
+  transition: background-color 0.3s ease-in
+  &:before
+    content: ""
+    display: block
+    width: 32px
+    margin: 0px
+    background: #FFFFFF
+    position: absolute
+    top: 0
+    bottom: 0
+    right: 31px
+    border: 2px solid #E3E3E3
+    border-radius: 32px
+    transition: all 0.3s ease-in 0s
+
+.onoffswitch-checkbox:checked + .onoffswitch-label
+  background-color: #FF8C8A
+  border-color: #FF8C8A
+
+  &:before
+    border-color: #FF8C8A
+    right: 0px
+
+// Labels
+
+.label
+  display: inline-block
+  border-radius: 4px
+  font-size: 14px
+  color: #606E77
+  padding: 3px 8px
+  &--grey
+    background: rgba(165, 165, 165, 0.3)
+  &--green
+    background: #D5EEDC
+    color: #2FA84F
 
 // Forms
 
@@ -220,3 +308,48 @@ input
     background-repeat: no-repeat
     color: rgba(0,0,0,0)
 
+// Slick styles
+
+.dots-overlay
+  ul.slick-dots 
+    bottom: 10px
+
+ul.slick-dots 
+  li 
+    margin: 0
+    button
+      &:before
+        font-size: 11px
+        color: #C4C4C4
+
+  li.slick-active button:before
+    color: #EE4C44
+
+.slick-slider
+
+  .slick-slide > div,
+  .slick-slide > div > div
+    &:hover, &:focus
+      outline: none
+
+  .slick-prev, .slick-next
+    width: 15px
+    height: 23px
+    z-index: 100
+    &:before
+      display: none
+
+  .slick-prev
+    left: 30px
+    background: url('../../static/images/slider-arrow-prev.svg') no-repeat
+    &:hover, &:focus
+      background: url('../../static/images/slider-arrow-prev-hover.svg') no-repeat
+
+  .slick-next
+    right: 30px
+    background: url('../../static/images/slider-arrow-next.svg') no-repeat
+    opacity: 0.5
+    &:hover, &:focus
+      opacity: 1
+      background: url('../../static/images/slider-arrow-next-hover.svg') no-repeat
+    

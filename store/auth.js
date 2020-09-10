@@ -72,9 +72,10 @@ export const actions = {
 
   async checkToken (context, token) {
     try {
-      // const response = await this.$axios.$post('/auth/check-token', {
-      //   token: token
-      // })
+      const response = await this.$axios.$post('/auth/check-token', {
+        token: token
+      })
+      console.log('response', response)
       let isValid = true
       return isValid
     } catch (error) {

@@ -4,7 +4,7 @@
       <div class="container primary-container">
         <div class="primary-nav">
           <div class="nav-wrap">
-            <h2 class="nav-title">Cферы Услуг</h2>
+            <h2 class="nav-title text-left">Cферы Услуг</h2>
             <ul class="nav">
               <li class="nav-item">
                 <a class="nav-link" href="#!">Юридические услуги</a>
@@ -31,7 +31,7 @@
           </div>
 
           <div class="nav-wrap">
-            <h2 class="nav-title">Сервисы</h2>
+            <h2 class="nav-title text-left">Сервисы</h2>
             <ul class="nav">
               <li class="nav-item">
                 <a class="nav-link" href="#!">Журнал</a>
@@ -46,7 +46,7 @@
           </div>
 
           <div class="nav-wrap">
-            <h2 class="nav-title">Информация</h2>
+            <h2 class="nav-title text-left">Информация</h2>
             <ul class="nav">
               <li class="nav-item">
                 <a class="nav-link" href="#!">Юридическая информация</a>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="mt-4 mt-lg-0">
-          <h2 class="nav-title">Оформи подписку на новости:</h2>
+          <h2 class="nav-title text-left">Оформи подписку на новости:</h2>
           
           <form class="form-small form-dark">
             <div class="form-group">

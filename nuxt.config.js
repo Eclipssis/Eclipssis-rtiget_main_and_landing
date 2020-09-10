@@ -26,7 +26,7 @@ module.exports = {
   loading: { color: '#3B8070' },
 
   axios: {
-    baseURL: "http://api-ivasiliev.rlion.org/api"
+    baseURL: "http://testrtiger3.rlion.org/api"
   },
 
   modules: [
@@ -37,6 +37,7 @@ module.exports = {
     { src: '~/plugins/modal', ssr: false },
     { src: '~/plugins/vuelidate', ssr: false },
     { src: '~/plugins/vue-carousel', mode: 'client' },
+    { src: './plugins/slick-slider.js' },
     '~plugins/range-slider.js'
   ],
 

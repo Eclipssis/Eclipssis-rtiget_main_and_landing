@@ -310,10 +310,6 @@ input
 
 // Slick styles
 
-.dots-overlay
-  ul.slick-dots 
-    bottom: 10px
-
 ul.slick-dots 
   li 
     margin: 0
@@ -340,16 +336,25 @@ ul.slick-dots
       display: none
 
   .slick-prev
-    left: 30px
+    left: 0px
     background: url('../../static/images/slider-arrow-prev.svg') no-repeat
     &:hover, &:focus
       background: url('../../static/images/slider-arrow-prev-hover.svg') no-repeat
 
   .slick-next
-    right: 30px
+    right: 0px
     background: url('../../static/images/slider-arrow-next.svg') no-repeat
     opacity: 0.5
     &:hover, &:focus
       opacity: 1
       background: url('../../static/images/slider-arrow-next-hover.svg') no-repeat
     
+.dots-overlay
+  ul.slick-dots 
+    bottom: 10px
+
+  .slick-prev
+    left: 30px
+
+  .slick-next
+    right: 30px

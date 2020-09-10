@@ -370,23 +370,20 @@
       <div class="container">
         <h2 class="partners-title">Медиапартнеры</h2>
 
-        <client-only>
-          <swiper class="swiper" :options="swiperOption">
-            <swiper-slide
+        <div class="py-4">
+          <VueSlickCarousel :arrows="true" :slidesToShow="4" :dots="false">
+            <div
               v-for="slide in swiperSlides"
               :key="slide.id"
             >
               <div class="image-wrap">
                 <img :src="getSlideImage(slide)">
               </div>
-            </swiper-slide>
+            </div>
+          </VueSlickCarousel>
+        </div>
+        
 
-            <div class="swiper-pagination" slot="pagination"></div>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
-
-          </swiper>
-        </client-only>
       </div>
     </div>
 
@@ -836,12 +833,11 @@
   padding: 15px 0
   background: #ffffff
 
-.partners-title
-
-div.swiper
-  padding: 30px 0
-  .image-wrap
-    text-align: center
+.image-wrap
+  min-height: 60px
+  display: flex
+  align-items: center
+  justify-content: center
 
 .confirm-email-body
   min-height: 300px

@@ -676,22 +676,7 @@
 
     data() {
       return {
-        value: 400,
-        swiperOption: {
-          slidesPerView: 1,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-          },
-        },
-        swiperSlides: [
-          {
-            id: 1
-          },
-          {
-            id: 2
-          }
-        ]
+        value: 400
       }
     },
   }

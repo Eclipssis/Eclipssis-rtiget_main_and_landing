@@ -404,16 +404,10 @@
 
 <script>
 
-  import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-  import 'swiper/swiper-bundle.min.css'
   import { mapState } from "vuex";
 
   export default {
 
-    components: {
-      Swiper,
-      SwiperSlide
-    },
 
     data() {
       return {
@@ -455,17 +449,7 @@
             id: 9,
             image: 'partner-3.jpg'
           }
-        ],
-        swiperOption: {
-          slidesPerView: 5,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-          },
-          pagination: {
-            el: '.swiper-pagination'
-          },
-        }
+        ]
       }
     },
 

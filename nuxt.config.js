@@ -36,7 +36,6 @@ module.exports = {
   plugins: [
     { src: '~/plugins/modal', ssr: false },
     { src: '~/plugins/vuelidate', ssr: false },
-    { src: '~/plugins/vue-carousel', mode: 'client' },
     { src: './plugins/slick-slider.js' },
     '~plugins/range-slider.js'
   ],

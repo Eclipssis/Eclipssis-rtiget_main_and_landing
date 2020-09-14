@@ -1,46 +1,45 @@
 <template>
-  <div class="servise-card">
+  <div v-if="servise" class="servise-card">
     <div class="servise-card__image">
-      <img src="@/static/content/servise-image.jpg">
+      <img v-if="servise.image" :src="require(`@/static/content/${servise.image}`)">
+      <img v-else src="@/static/content/servise-placeholder.jpg">
     </div>
     <div class="servise-card__inner">
 
-      <span class="label label--grey mb-2">Коллегия адвокатов</span>
-      <h3 class="servise-card__title mb-2">Группа компаний "КРОНОС"</h3>
-      <h3 class="servise-card__work-time mb-2">Работает с 2012 года</h3>
-      <p class="servise-card__text mb-2">
-        Юристы нашей компании оказывают гражданам и юридическим лицам: квалифицированные юридические консультации и 
-        юридические услуги почти во всех отраслях...
+      <span class="label label--grey mb-2">
+        <template v-if="servise.companyType">{{ servise.companyType }}</template>
+        <template v-else>OOO</template>
+      </span>
+      <h3 class="servise-card__title mb-2">{{ servise.title }}</h3>
+      <h3 v-if="servise.workDuration" class="servise-card__work-time mb-2">{{ servise.workDuration }}</h3>
+      <p v-if="servise.text" class="servise-card__text mb-2">
+        {{ servise.text }}
       </p>
 
-      <div class="servise-card__special">
+      <div v-if="servise.specialization" class="servise-card__special mt-3">
         Специализация: 
-        <span class="label label--green mb-3">Коллегия адвокатов</span>
+        <span class="label label--green">{{ servise.specialization }}</span>
       </div>
 
-      <div class="servise-card__users">
+      <div class="servise-card__users mt-3">
         <div class="user-card mb-3">
-          <div class="avatar mr-2">
-            <img src="@/static/content/user-avatar-1.jpg">
+          <div v-if="servise.director.avatar" class="director-avatar mr-2">
+            <img :src="require(`@/static/content/${servise.director.avatar}`)">
           </div>
           <div class="user-card__title">
             <span class="font-500">Директор: </span>
-            Михайловский М. В.
+            {{ servise.director.name }}
           </div>
         </div>
 
-        <div class="user-card user-card--list">
-          <div class="avatar">
-            <img src="@/static/content/user-avatar-2.jpg">
+        <div v-if="servise.staff.length" class="user-card user-card--list">
+          <div v-for="(user, index) in servise.staff" :key="index">
+            <div class="avatar" v-if="index < 3">
+              <img :src="require(`@/static/content/${user.image}`)">
+            </div>
           </div>
-          <div class="avatar">
-            <img src="@/static/content/user-avatar-3.jpg">
-          </div>
-          <div class="avatar">
-            <img src="@/static/content/user-avatar-4.jpg">
-          </div>
-
-          <div class="user-card__text ml-2 mb-1">и еще 5 сотрудников</div>
+          
+          <div class="user-card__text ml-2 mb-1">и еще {{ servise.staff.length - 3 }} сотрудников</div>
         </div>
       </div>
 
@@ -51,20 +50,12 @@
         <i class="icon heart-black"></i>
       </a>
 
-      <div class="rewievs mt-5">
+      <div v-if="servise.reviews.length" class="rewievs mt-5">
         <span class="rewievs__title mb-3">Отзывы клиентов</span>
 
         <ul class="rewievs__list">
-          <li class="rewievs__list-item">
-            <img src="@/static/content/review-image.png">
-          </li>
-
-          <li class="rewievs__list-item">
-            <img src="@/static/content/review-image.png">
-          </li>
-
-          <li class="rewievs__list-item">
-            <img src="@/static/content/review-image.png">
+          <li class="rewievs__list-item" v-for="(review, index) in servise.reviews" :key="index">
+            <img :src="require(`@/static/content/${review.image}`)">
           </li>
         </ul>
       </div>
@@ -74,7 +65,14 @@
 
 <script>
   export default {
-    name: 'ServiseCard'
+    name: 'ServiseCard',
+
+    props: {
+      servise: {
+        type: Object,
+        default: () => {}
+      },
+    },
   }
 </script>
 
@@ -91,7 +89,12 @@
     overflow: hidden
     margin-right: 30px
     align-self: end
+    min-width: 130px
+    max-width: 130px
+    text-align: center
+
   &__inner
+    flex: 1 1
 
   &__title
     font-weight: 500
@@ -110,6 +113,9 @@
 
   &__aside
     padding-left: 30px
+    max-width: 300px
+
+  
 
 .user-card
   display: flex
@@ -128,9 +134,19 @@
   &__text
     font-size: 14px
 
+.avatar
+  img
+    border-radius: 50%
+
+.director-avatar
+  width: 75px
+  img
+    border-radius: 50%
+
 .favorite
   display: flex
   align-items: center
+  justify-content: flex-end
   &__text
     white-space: nowrap
     margin-right: 5px
@@ -148,5 +164,7 @@
     flex: 1 1 50%
     max-width: 50%
     padding: 0 5px 5px
+    margin-bottom: 5px
+    
 
 </style>

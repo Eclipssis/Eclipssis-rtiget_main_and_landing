@@ -580,7 +580,7 @@
 
 <script>
 export default {
-  name: 'Index'
+  name: 'Landing'
 }
 </script>
 

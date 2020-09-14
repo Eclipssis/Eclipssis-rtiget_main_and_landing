@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="category">
     
     <div class="container">
       <section class="main-block">
@@ -194,7 +194,7 @@
         <ServiseCard></ServiseCard>
 
         <div class="slider-wrap">
-          <VueSlickCarousel :arrows="true" :dots="true" class="dots-overlay mb-4">
+          <VueSlickCarousel :arrows="true" :dots="true" class="dots-overlay beige-bg mb-4">
             <div>
               <div class="slider-body">
                 <div class="slider-inner">
@@ -228,8 +228,35 @@
         <ServiseCard></ServiseCard>
         <ServiseCard></ServiseCard>
 
+        <div class="slider-wrap ">
+          <div class="review-slider">
+            <h2 class="text-left mb-3">Отзывы о сервисе</h2>
+            <VueSlickCarousel :arrows="true" :dots="true" class="dots-overlay beige-bg mb-4">
+              <div>
+                <div class="review-card">
+                  <div class="review-card__image">
+                    <img src="@/static/content/mark.jpg">
+                    <i class="icon review-play"></i>
+                  </div>
+
+                  <div class="review-card__name">
+                    <i class="icon review-insta mr-1"></i>
+                    missrussiatwins
+                  </div>
+                  <p class="review-card__text">“Мы нашли удобный сервис R.TIGER — найти адекватного юриста в пару кликов очень просто... ” </p>
+                </div>
+              </div>
+            </VueSlickCarousel>
+          </div>
+        </div>
+
+        <ServiseCard></ServiseCard>
+        <ServiseCard></ServiseCard>
+        <ServiseCard></ServiseCard>
+        <ServiseCard></ServiseCard>
+
         <div class="slider-wrap">
-          <VueSlickCarousel :arrows="true" :dots="true" class="dots-overlay mb-4">
+          <VueSlickCarousel :arrows="true" :dots="true" class="dots-overlay beige-bg mb-4">
             <div>
               <div class="slider-body">
                 <div class="slider-inner">
@@ -682,244 +709,7 @@
   }
 </script>
 
-<style lang="sass" scoped>
-
-.title-h2
-  font-size: 34px
-  line-height: 1.2
-  font-weight: 400
-
-.main-block
-  padding-top: 160px
-  margin-bottom: 60px
-
-  &__title
-    font-weight: 500
-    font-size: 42px
-    line-height: 1.2
-    letter-spacing: -0.02em
-    margin-bottom: 18px
-    text-align: left
-  &__text
-    font-size: 16px
-    margin-bottom: 20px
-
-  &__help-text
-    display: block
-    font-size: 12px
-    position: relative
-    padding-left: 26px
-    margin-top: 22px
-    &:before
-      content: ' '
-      position: absolute
-      top: 50%
-      margin-top: -10px
-      left: 0
-      width: 20px
-      height: 20px
-      background: url('../static/images/lock.svg') 50% no-repeat
-
-.popup
-  position: relative
-  padding: 12px 15px 15px 21px
-  background: #FFF2DE
-  border: 2px solid rgba(165, 165, 165, 0.4)
-  box-shadow: 0px 12px 20px rgba(96, 110, 119, 0.12)
-  border-radius: 2px
-  &__close
-    display: inline-block
-    float: right
-    width: 10px
-    height: 10px
-    background: url('../static/images/popup-close.svg') 50% no-repeat
-
-  &__text
-    font-size: 15px
-    line-height: 17px
-  &__title
-    font-size: 15px
-    font-weight: 700
-    margin-bottom: 4px
-
-  &:after,
-  &:before 
-    content: ''
-    display: block
-    position: absolute
-    right: 100%
-    width: 0
-    height: 0
-    border-style: solid
-  
-  &:after 
-    top: 30px
-    border-color: transparent #FFF2DE transparent transparent 
-    border-width: 10px
-    margin-right: -2px
-  
-
-  &:before 
-    top: 29px
-    border-color: transparent rgb(219, 211, 199) transparent transparent 
-    border-width: 11px
-  
-.secondary-nav-block
-  .nav-title
-    display: flex
-    justify-content: center
-    align-items: center
-
-.nav-wrap
-  display: flex
-  justify-content: space-between
-
-.secondary-nav
-  &__item
-    font-size: 18px
-    margin-bottom: 15px
-    
-    &:before
-      content: ' '
-      display: inline-block
-      margin-right: 7px
-      width: 7px
-      height: 7px
-      background-color: #EB4745
-      border-radius: 50%
-
-  &__link
-    color: #000000
-    text-decoration: none
-    transition: all 0.2s ease
-    &:hover
-      color: #EB4745
-
-.phone-info
-  display: inline-flex
-  align-items: center
-  text-align: left
-  max-width: 520px
-  background: #EDF4F9
-  border-radius: 10px
-  padding: 18px 20px
-  
-  &__body
-    padding-left: 15px
-
-  &__title
-    font-weight: 500
-    font-size: 17px
-
-  &__text
-    font-size: 15px
-
-.category-title
-  font-weight: 900
-  font-size: 28px
-  
-.slider-body
-  display: flex
-  justify-content: space-around
-  align-items: center 
-  padding: 30px 80px
-  min-height: 250px
-  display: flex
-  align-items: center
-  background: linear-gradient(0deg, #FFFAF3, #FFFAF3)
-  border: 1px solid rgba(165, 165, 165, 0.5)
-  border-radius: 4px
-
-.slider-inner
-  max-width: 400px
-
-.slider-title
-  font-weight: 500
-  font-size: 27px
-
-.slider-text
-  font-size: 14px
-
-.slider-wrap
-  padding: 0 40px
-
-.find-lawyer
-  padding: 60px 0
-
-.lawer-item
-  text-align: center
-  padding: 0 10px
-
-.lawer-image
-  display: flex
-  align-items: center
-  justify-content: center
-  margin-bottom: 5px
-  min-height: 250px
-  line-height: 250px
-  img
-    margin: 0 auto
-
-.lawer-text
-  font-weight: 500
-  font-size: 21px
-  letter-spacing: -0.03em
-  margin-bottom: 6px
-.lawer-description
-  font-weight: 500
-  font-size: 18px
-  color: #2B8EE0
-
-.offer-btn 
-  box-shadow: none
-  padding: 18px 35px
-  font-weight: 500
-
-.same-servises
-  padding: 40px 0 20px
-  background: rgba(#A5A5A5, 0.2)
-  .title-h3
-    font-weight: 500
-    font-size: 15px
-    color: #606E77
-
-
-
-.servise-text
-  display: inline-block
-  font-size: 13px
-  max-width: 260px
-
-
-.divorce-block
-  padding: 0 0 60px
-
-.divorce-text
-  font-size: 19px
-
-.divorce-list
-  margin-bottom: 15px
-  padding-left: 20px
-  > li
-    font-size: 19px
-    line-height: 19px
-    display: flex
-    align-items: center
-    margin-bottom: 12px
-    &:before
-      content: ''
-      display: inline-block
-      margin-top: 5px
-      width: 5px
-      height: 5px
-      background: #EB4745
-      border-radius: 50%
-      margin-right: 15px
-
-</style>
 <style lang="sass">
-@import "~/assets/css/partials/_variables.sass"
-@import "~/assets/css/partials/_mixins.sass"
 
 .vue-slider-dot-handle
   border-radius: 17px
@@ -929,7 +719,7 @@
 .vue-slider-dot-tooltip-inner
   border: none
   background: none
-  color: $green
+  color: #5A9811
   font-weight: 500
   font-size: 17px
   margin-bottom: 30px
@@ -940,28 +730,4 @@
   height: 30px
   background: #A5A5A5
   top: 28px
-
-.servises-same-slick.slick-slider 
-  .slick-next
-    right: -10px
-
-  .slick-prev
-    left: -30px
-
-.offer
-  background: #222F38
-  padding: 50px 0
-
-  .main-block__title
-    font-size: 33px
-    color: #fff
-
-  .main-block__text,
-  .main-block__help-text
-    color: #fff
-
-  .main-block__text
-    font-size: 15px
-    
-
 </style>

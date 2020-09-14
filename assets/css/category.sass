@@ -1,0 +1,338 @@
+.category
+
+  .review-slider
+    padding: 20px 15px 0
+    background: linear-gradient(0deg, #FFFAF3, #FFFAF3)
+    border: 1px solid rgba(165, 165, 165, 0.5)
+    border-radius: 4px
+    margin-bottom: 20px
+    .slick-slider
+      border: none
+      background: none
+      border-radius: 0px
+
+  .review-card
+    max-width: 230px
+    &__image
+      display: inline-block
+      position: relative
+      overflow: hidden
+      border-radius: 15px
+      margin-bottom: 17px
+      .icon
+        position: absolute
+        top: 8px
+        right: 8px
+
+    &__name
+      display: inline-block
+      margin-bottom: 17px
+      font-weight: 500
+      font-size: 15px
+    &__text
+      font-size: 14px
+
+    
+
+  .btn-popup
+    display: inline-block
+    position: relative
+    .popup
+      position: absolute
+      max-width: 260px
+      top: -10px 
+      right: -300px
+
+  .main-block-new
+    .btn
+      font-weight: 700
+      max-width: 280px
+
+  .dispute
+    margin-bottom: 60px
+
+    .btn
+      font-size: 12px
+      padding: 13px 35px
+      letter-spacing: 0.07em
+      
+    &__title
+      font-size: 28px
+      text-align: left
+      font-weight: normal
+      margin-bottom: 20px
+
+    &__subtitle
+      font-weight: bold
+      font-size: 12px
+      letter-spacing: 0.08em
+    &__text
+      font-size: 19px
+      margin-bottom: 25px
+    &__list
+      list-style-type: disc
+      list-style-position: inside
+      font-size: 12px
+      li
+        margin-bottom: 5px
+      a
+        text-decoration: underline
+        color: #222F38
+        &:hover
+          text-decoration: none
+
+  .title-h2
+    font-size: 34px
+    line-height: 1.2
+    font-weight: 400
+
+  .main-block
+    padding-top: 160px
+    margin-bottom: 60px
+
+    &__title
+      font-weight: 500
+      font-size: 42px
+      line-height: 1.2
+      letter-spacing: -0.02em
+      margin-bottom: 18px
+      text-align: left
+    &__text
+      font-size: 16px
+      margin-bottom: 20px
+
+    &__help-text
+      display: inline-block
+      font-size: 12px
+      position: relative
+      padding-left: 26px
+      margin-top: 22px
+      &:before
+        content: ' '
+        position: absolute
+        top: 50%
+        margin-top: -10px
+        left: 0
+        width: 20px
+        height: 20px
+        background: url('../../static/images/lock.svg') 50% no-repeat
+
+  .popup
+    position: relative
+    padding: 12px 15px 15px 21px
+    background: #FFF2DE
+    border: 2px solid rgba(165, 165, 165, 0.4)
+    box-shadow: 0px 12px 20px rgba(96, 110, 119, 0.12)
+    border-radius: 2px
+    &__close
+      display: inline-block
+      float: right
+      width: 10px
+      height: 10px
+      background: url('../../static/images/popup-close.svg') 50% no-repeat
+
+    &__text
+      font-size: 15px
+      line-height: 17px
+    &__title
+      font-size: 15px
+      font-weight: 700
+      margin-bottom: 4px
+
+    &:after,
+    &:before 
+      content: ''
+      display: block
+      position: absolute
+      right: 100%
+      width: 0
+      height: 0
+      border-style: solid
+    
+    &:after 
+      top: 30px
+      border-color: transparent #FFF2DE transparent transparent 
+      border-width: 10px
+      margin-right: -2px
+    
+
+    &:before 
+      top: 29px
+      border-color: transparent rgb(219, 211, 199) transparent transparent 
+      border-width: 11px
+    
+  .secondary-nav-block
+    .nav-title
+      display: flex
+      justify-content: center
+      align-items: center
+
+  .nav-wrap
+    display: flex
+    justify-content: space-between
+
+  .secondary-nav
+    &__item
+      font-size: 18px
+      margin-bottom: 15px
+      
+      &:before
+        content: ' '
+        display: inline-block
+        margin-right: 7px
+        width: 7px
+        height: 7px
+        background-color: #EB4745
+        border-radius: 50%
+
+    &__link
+      color: #000000
+      text-decoration: none
+      transition: all 0.2s ease
+      &:hover
+        color: #EB4745
+
+  .phone-info
+    display: inline-flex
+    align-items: center
+    text-align: left
+    max-width: 520px
+    background: #EDF4F9
+    border-radius: 10px
+    padding: 18px 20px
+    
+    &__body
+      padding-left: 15px
+
+    &__title
+      font-weight: 500
+      font-size: 17px
+
+    &__text
+      font-size: 15px
+      margin-bottom: 0
+
+  .category-title
+    font-weight: 900
+    font-size: 28px
+    
+  .slider-body
+    display: flex
+    justify-content: space-around
+    align-items: center 
+    padding: 30px 80px
+    min-height: 250px
+    display: flex
+    align-items: center
+
+  .slider-inner
+    max-width: 400px
+
+  .slider-title
+    font-weight: 500
+    font-size: 27px
+
+  .slider-text
+    font-size: 14px
+
+  .slider-wrap
+    padding: 0 40px
+
+  .find-lawyer
+    padding: 60px 0
+
+  .lawer-item
+    text-align: center
+    padding: 0 10px
+
+  .lawer-image
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-bottom: 5px
+    min-height: 250px
+    line-height: 250px
+    img
+      margin: 0 auto
+      pointer-events: none
+
+  .lawer-text
+    font-weight: 500
+    font-size: 21px
+    letter-spacing: -0.03em
+    margin-bottom: 6px
+  .lawer-description
+    font-weight: 500
+    font-size: 18px
+    color: #2B8EE0
+
+  .offer-btn 
+    box-shadow: none
+    padding: 18px 35px
+    font-weight: 500
+
+  .same-servises
+    padding: 40px 0 20px
+    background: rgba(#A5A5A5, 0.2)
+    .title-h3
+      font-weight: 500
+      font-size: 15px
+      color: #606E77
+
+
+
+  .servise-text
+    display: inline-block
+    font-size: 13px
+    max-width: 260px
+
+
+  .divorce-block
+    padding: 0 0 60px
+
+  .divorce-text
+    font-size: 19px
+
+  .divorce-list
+    margin-bottom: 15px
+    padding-left: 20px
+    > li
+      font-size: 19px
+      line-height: 19px
+      display: flex
+      align-items: center
+      margin-bottom: 12px
+      &:before
+        content: ''
+        display: inline-block
+        margin-top: 5px
+        width: 5px
+        height: 5px
+        background: #EB4745
+        border-radius: 50%
+        margin-right: 15px
+
+
+.servises-same-slick.slick-slider 
+  .slick-next
+    right: -10px
+
+  .slick-prev
+    left: -30px
+
+.offer
+  background: #222F38
+  padding: 50px 0
+
+  .main-block__title
+    font-size: 33px
+    color: #fff
+
+  .main-block__text,
+  .main-block__help-text
+    color: #fff
+
+  .main-block__text
+    font-size: 15px
+  
+  
